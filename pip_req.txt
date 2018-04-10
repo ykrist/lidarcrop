@@ -1,0 +1,2 @@
+laspy==1.5.1
+plyfile==0.5

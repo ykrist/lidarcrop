@@ -1,0 +1,42 @@
+# Config file
+# To leave a setting as default, simply leave it blank, eg
+# tol:
+plyfile: "data/eta_p1s1-10/results.ply"
+trajfile: "data/eta_p1s1-10/results_traj.txt"
+lasfile: "data/eta_p1s1-10/results.las"
+#lasfile:
+
+# Name prefix of the output files, eg, setting to "out" will result in files "out.ply", "out_traj.txt", "out.las".
+# (default is "out")
+name: debug
+# Tolerance, aggressiveness of ascent/descent clipping.  Set to a negative number to disable. (default 0)
+tol:
+# Minimum range to keep points, set to 0 to disable (default is 0)
+min-range:
+# Maximum range to keep points, set to 'inf' to disable (default is 'inf')
+max-range:
+# Restrict points by FOV angle.  This angle is measure from the negative z-axis. Set to <=0 to disable.
+# (default is 0)
+fov-angle:
+# Number of vertices to use for internal polygons which creating bounding boxes (using more means a smoother outline),
+# (default is 50)
+polygon-vertices:
+# Radius of internal polygons, i.e the minimum distance from the bounding polygon to the flight trajectory
+# Set to a negative number to disable. (default is 5)
+polygon-radius: 5
+# Radius of which to include points to use when calculating altitude (default is 0.2)
+alt-radius: 0.5
+# Whether to create plots (default is False)
+plot: True
+# Set debug mode to True to disable file output (which can take some time) (default is False)
+debug: False
+# Output the summary to txt file (default is False)
+txt-summary: True
+# Output the summary values to a yaml file (default is False)
+yaml-summary: True
+# Significant Outlier Removal: Number of STD above the mean which is the cut-off for points
+# (default is 2)
+sor-nsigma:
+# Significant Outlier Removal: Number of points to use in computing the mean distance to neighbours.  Set to 0 to diable
+# SOR filtering (default is 8)
+sor-numpoints:
