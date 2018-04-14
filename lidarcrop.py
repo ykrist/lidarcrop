@@ -402,7 +402,7 @@ if __name__ == "__main__":
     summary["range-std"] = float(data_points[:, 4].std())
     summary["range-max"] = float(data_points[:, 4].max())
     summary["range-min"] = float(data_points[:, 4].min())
-    summary["traj-sev"] = summary["traj-loiter"] / (summary["clipped-area"] * summary["range-mean"])
+    summary["traj-sev"] = summary["traj-loiter"] / summary["range-mean"]
     summary["traj-esr"] = float(len(data_points) / summary["total-time"])
     summary["traj-edr"] = float(summary["traj-esr"] / convex_hull.volume)
 
