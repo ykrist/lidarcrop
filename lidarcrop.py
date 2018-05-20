@@ -233,7 +233,10 @@ def calculate_altitude(points, traj_points, args):
     points_kdtree = scipy.spatial.cKDTree(points[:, [1, 2]])
     for i in range(len(traj_points)):
         indices = points_kdtree.query_ball_point(traj_points[i, [1, 2]], r=args.alt_radius)
-        alt[i] = traj_points[i, 3] - points[indices, 3].mean()
+        if len(indices) > 0:
+            alt[i] = traj_points[i, 3] - points[indices, 3].mean()
+        else:
+            alt[i] = np.nan
     return alt
 
 
@@ -389,8 +392,13 @@ if __name__ == "__main__":
     # Calculate the true altitude (this will be added to the output trajectory file)
     print("Calculating true altitude...")
     true_altitude = calculate_altitude(data_points, filtered_trajectory, args)
-    summary["traj-mean-alt"] = float(true_altitude.mean())
-    summary["traj-std-alt"] = float(true_altitude.std())
+    filtered_true_altitude = true_altitude[~np.isnan(true_altitude)]
+    num_bad_alt_points = len(true_altitude)-len(filtered_true_altitude)
+    if num_bad_alt_points > 0:
+        print("[WARNING]: Unable to find altitude for {:,d}/{:,d} trajectory points.".format(
+            num_bad_alt_points, len(true_altitude)))
+    summary["traj-mean-alt"] = float(filtered_true_altitude.mean())
+    summary["traj-std-alt"] = float(filtered_true_altitude.std())
 
     distance, velocity = calculate_distance_velocity(filtered_trajectory)
     summary["traj-mean-speed"] = float(velocity.mean())
