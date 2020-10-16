@@ -3,7 +3,9 @@
 ```
 %time x y z
 ```
-Extra columns will be ignored.
+Extra columns will be ignored.  
+
+This code in this repository is used in *Modelling the effects of fundamental UAV flight parameters on LiDAR point clouds to facilitate objectives-based planning* (2019) (https://doi.org/10.1016/j.isprsjprs.2019.01.020).
 
 # Requirements
 - Python 2.7/Anaconda with relevant packages (see `conda_req.txt` and `pip_req.txt`).
